@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Gallery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: white;
+            background-size: 15%;
+            animation: gradientBG 10s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: url("https://www.shutterstock.com/image-vector/abstract-tech-network-connection-dots-260nw-2418837781.jpg");
+            color: #000000;
+            text-align: center;
+            padding: 2rem 1rem;
+            width: 100%;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-shadow: 2px 2px 4px rgba(151, 136, 136, 0.7);
+        }
+
+        header p {
+            margin: 10px 0 0 0;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            text-shadow: 1px 1px 3px rgba(139, 129, 129, 0.7);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+        }
+
+        nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #f9a826;
+        }
+        .gallery-description {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #636e72;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background-color: #fff;
+            color: #2d3436;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-button:hover {
+            background-color: #2d3436;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background-color: #2d3436;
+            color: #fff;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            aspect-ratio: 3/4;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-item-category {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .filter-buttons {
+                gap: 0.75rem;
+            }
+
+            .filter-button {
+                padding: 0.4rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mohit Yadav</h1>
+        <p>Tech Enthusiast | Researcher | Problem Solver | Visionary</p>
+    </header>
+
+    <nav>
+        <a href="index.html">About Me</a>
+        <a href="index.html">Education and Experience</a>
+        <a href="index.html">Skills and Achievements</a>
+        <a href="researchpublication.html">Publications</a>
+        <a href="updatedpatents.html">Patents</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
+
+    <main class="gallery-container">
+        <!-- Gallery items using placeholder images -->
+        <div class="gallery-item">
+            <img src="patentindia.jpg" alt="Project 1">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Patent Certificate India</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="it2.jpg" alt="Project 2">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Bharat Drone Shakti</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="it3.jpg" alt="Project 3">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Bharat Drone Shakti</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="it4.jpg" alt="Project 4">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Bharat Drone Skati</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="it5.jpg" alt="Project 5">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Skill India,Pragati Maidan</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="it6.jpg" alt="Project 6">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">AQI Paper Certificate</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="bookforest.jpg" alt="Project 7">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Smart Forestry</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="aqibook.jpg" alt="Project 8">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Smart Air Book</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="uk1.jpg" alt="Project 6">
+            <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">UK Design Certificate</h3>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
